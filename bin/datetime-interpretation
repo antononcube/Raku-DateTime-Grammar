@@ -9,7 +9,7 @@ my %*SUB-MAIN-OPTS = :named-anywhere;
 multi sub MAIN(Str $spec, #= Datetime specification.
                Str :t(:$target) = 'Raku' #= Interpretation target.
                ) {
-    my $res = datetime-interpretation($spec, :$target);
+    my $res = datetime-interpret($spec, :$target);
     say $res;
 }
 
