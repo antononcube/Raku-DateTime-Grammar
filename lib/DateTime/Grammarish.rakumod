@@ -77,7 +77,7 @@ role DateTime::Grammarish {
         \w+
     }
 
-    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> }
+    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> | <date8> }
 
     token date1 {
         # e.g., 02 Jun 1982
@@ -109,6 +109,10 @@ role DateTime::Grammarish {
 
     token date7 {
         <day=.D2upto> \h+ <month> \h+ <year=.D4-year>
+    }
+
+    token date8 {
+        <month> \h+ <day=.D2upto> \h+ <year=.D4-year>
     }
 
     token time {

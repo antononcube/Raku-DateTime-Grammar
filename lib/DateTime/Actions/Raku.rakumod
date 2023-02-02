@@ -82,6 +82,10 @@ class DateTime::Actions::Raku {
         self!genericDate($/);
     }
 
+    method date8($/) { # e.g. March 23 2018s
+        self!genericDate($/);
+    }
+
     my %timezones =
             UTC => 0,
             GMT => 0,
@@ -155,7 +159,7 @@ class DateTime::Actions::Raku {
 
     my %month-name = January => 1, February => 2, March => 3, April =>  4, May =>  5, June =>  6,
                            July => 7, August => 8, September => 9, October => 10, Novemver => 11, December => 12;
-    method month-hame($/) {
+    method month-name($/) {
         make %month-name{~$/}
     }
 
