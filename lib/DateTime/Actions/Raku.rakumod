@@ -3,7 +3,11 @@ use v6.d;
 
 class DateTime::Actions::Raku {
     method TOP($/) {
-        make $<dt>.made
+        make $/.values[0].made;
+    }
+
+    method datetime-spec($/) {
+        make $<dt>.made;
     }
 
     method rfc3339-date($/) {
@@ -11,15 +15,15 @@ class DateTime::Actions::Raku {
     }
 
     method rfc1123-date($/) {
-        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made)
+        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made);
     }
 
     method rfc850-date($/) {
-        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made)
+        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made);
     }
 
     method rfc850-var-date($/) {
-        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made)
+        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made);
     }
 
     method gmt-or-numeric-tz($/) {
@@ -29,7 +33,7 @@ class DateTime::Actions::Raku {
     }
 
     method rfc850-var-date-two($/) {
-        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made)
+        make DateTime.new(|$<date>.made, |$<time>.made, |$<gmt-or-numeric-tz>.made);
     }
 
     method asctime-date($/) {
@@ -38,7 +42,7 @@ class DateTime::Actions::Raku {
 
         my $tz = ($<asctime-tz>.made<offset-hours> // 0) × 3600;
 
-        make DateTime.new(|$<date>.made, |$<time>.made, :timezone($tz))
+        make DateTime.new(|$<date>.made, |$<time>.made, :timezone($tz));
     }
 
     method nginx-date($/) {
@@ -46,7 +50,7 @@ class DateTime::Actions::Raku {
     }
 
     method !genericDate($/) {
-        make { year => $<year>.made, month => $<month>.made, day => $<day>.made }
+        make { year => $<year>.made, month => $<month>.made, day => $<day>.made };
     }
 
     method date-spec($/) {
@@ -94,19 +98,19 @@ class DateTime::Actions::Raku {
     method asctime-tz($/) {
         my $offset = (%timezones{$<asctime-tzname>.made} // 0) + ($<time-houroffset>.made // 0);
 
-        make { offset-hours => $offset }
+        make { offset-hours => $offset };
     }
 
     method asctime-tzname($/) {
-        make ~$/
+        make ~$/;
     }
 
     method time-houroffset($/) {
-        make +$/
+        make +$/;
     }
 
     method time($/) {
-        make { hour => +$<hour>, minute => +$<minute>, second => +$<second> }
+        make { hour => +$<hour>, minute => +$<minute>, second => +$<second> };
     }
 
     method time2($/) {
@@ -138,13 +142,13 @@ class DateTime::Actions::Raku {
 
     my %wkday = Mon => 0, Tue => 1, Wed => 2, Thu => 3, Fri => 4, Sat => 5, Sun => 6;
     method wkday($/) {
-        make %wkday{$/.Str.tc}
+        make %wkday{$/.Str.tc};
     }
 
     my %weekday = Monday => 0, Tuesday => 1, Wednesday => 2, Thursday => 3,
                   Friday => 4, Saturday => 5, Sunday => 6;
     method weekday($/) {
-        make %weekday{$/.Str.tc}
+        make %weekday{$/.Str.tc};
     }
 
     method month($/) {
@@ -154,33 +158,33 @@ class DateTime::Actions::Raku {
     my %month-short-name = Jan => 1, Feb => 2, Mar => 3, Apr =>  4, May =>  5, Jun =>  6,
                 Jul => 7, Aug => 8, Sep => 9, Oct => 10, Nov => 11, Dec => 12;
     method month-short-name($/) {
-        make %month-short-name{$/.Str.tc}
+        make %month-short-name{$/.Str.tc};
     }
 
     my %month-name = January => 1, February => 2, March => 3, April =>  4, May =>  5, June =>  6,
                            July => 7, August => 8, September => 9, October => 10, Novemver => 11, December => 12;
     method month-name($/) {
-        make %month-name{$/.Str.tc}
+        make %month-name{$/.Str.tc};
     }
 
     method day($/) {
-        make +$/
+        make +$/;
     }
 
     method D4-year($/) {
-        make +$/
+        make +$/;
     }
 
     method D2-year($/) {
         my $yy = +$/;
-        make $yy < 34 ?? 2000 + $yy !! 1900 + $yy
+        make $yy < 34 ?? 2000 + $yy !! 1900 + $yy;
     }
 
     method D2($/) {
-        make +$/
+        make +$/;
     }
 
     method D2upto($/) {
-        make +$/
+        make +$/;
     }
 }

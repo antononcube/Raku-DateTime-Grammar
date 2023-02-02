@@ -2,6 +2,10 @@ use v6.d;
 
 role DateTime::Grammarish {
     token TOP {
+        <datetime-spec>
+    }
+
+    token datetime-spec {
         <dt=rfc3339-date> | <dt=rfc1123-date> | <dt=rfc850-date> | <dt=rfc850-var-date> | <dt=rfc850-var-date-two> | <dt=asctime-date> | <dt=nginx-date> | <dt=date-spec>
     }
 
