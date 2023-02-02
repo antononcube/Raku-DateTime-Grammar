@@ -138,13 +138,13 @@ class DateTime::Actions::Raku {
 
     my %wkday = Mon => 0, Tue => 1, Wed => 2, Thu => 3, Fri => 4, Sat => 5, Sun => 6;
     method wkday($/) {
-        make %wkday{~$/}
+        make %wkday{$/.Str.tc}
     }
 
     my %weekday = Monday => 0, Tuesday => 1, Wednesday => 2, Thursday => 3,
                   Friday => 4, Saturday => 5, Sunday => 6;
     method weekday($/) {
-        make %weekday{~$/}
+        make %weekday{$/.Str.tc}
     }
 
     method month($/) {
@@ -154,13 +154,13 @@ class DateTime::Actions::Raku {
     my %month-short-name = Jan => 1, Feb => 2, Mar => 3, Apr =>  4, May =>  5, Jun =>  6,
                 Jul => 7, Aug => 8, Sep => 9, Oct => 10, Nov => 11, Dec => 12;
     method month-short-name($/) {
-        make %month-short-name{~$/}
+        make %month-short-name{$/.Str.tc}
     }
 
     my %month-name = January => 1, February => 2, March => 3, April =>  4, May =>  5, June =>  6,
                            July => 7, August => 8, September => 9, October => 10, Novemver => 11, December => 12;
     method month-name($/) {
-        make %month-name{~$/}
+        make %month-name{$/.Str.tc}
     }
 
     method day($/) {
