@@ -49,6 +49,11 @@ class DateTime::Actions::Raku {
         make { year => $<year>.made, month => $<month>.made, day => $<day>.made }
     }
 
+    method date-spec($/) {
+        my %res = $/.values[0].made;
+        make DateTime.new(|%res);
+    }
+
     method date1($/) { # e.g., 02 Jun 1982
         self!genericDate($/);
     }
@@ -70,6 +75,10 @@ class DateTime::Actions::Raku {
     }
 
     method date6($/) { # e.g. 28/Mar/2018
+        self!genericDate($/);
+    }
+
+    method date7($/) { # e.g. 28 March 2018
         self!genericDate($/);
     }
 
@@ -134,10 +143,20 @@ class DateTime::Actions::Raku {
         make %weekday{~$/}
     }
 
-    my %month = Jan => 1, Feb => 2, Mar => 3, Apr =>  4, May =>  5, Jun =>  6,
-                Jul => 7, Aug => 8, Sep => 9, Oct => 10, Nov => 11, Dec => 12;
     method month($/) {
-        make %month{~$/}
+        make $/.values[0].made;
+    }
+
+    my %month-short-name = Jan => 1, Feb => 2, Mar => 3, Apr =>  4, May =>  5, Jun =>  6,
+                Jul => 7, Aug => 8, Sep => 9, Oct => 10, Nov => 11, Dec => 12;
+    method month-short-name($/) {
+        make %month-short-name{~$/}
+    }
+
+    my %month-name = January => 1, February => 2, March => 3, April =>  4, May =>  5, June =>  6,
+                           July => 7, August => 8, September => 9, October => 10, Novemver => 11, December => 12;
+    method month-hame($/) {
+        make %month-name{~$/}
     }
 
     method day($/) {
@@ -154,6 +173,10 @@ class DateTime::Actions::Raku {
     }
 
     method D2($/) {
+        make +$/
+    }
+
+    method D2upto($/) {
         make +$/
     }
 }

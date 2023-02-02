@@ -2,7 +2,7 @@ use v6.d;
 
 role DateTime::Grammarish {
     token TOP {
-        <dt=rfc3339-date> | <dt=rfc1123-date> | <dt=rfc850-date> | <dt=rfc850-var-date> | <dt=rfc850-var-date-two> | <dt=asctime-date> | <dt=nginx-date>
+        <dt=rfc3339-date> | <dt=rfc1123-date> | <dt=rfc850-date> | <dt=rfc850-var-date> | <dt=rfc850-var-date-two> | <dt=asctime-date> | <dt=nginx-date> | <dt=date-spec>
     }
 
     token rfc3339-date {
@@ -30,7 +30,7 @@ role DateTime::Grammarish {
     }
 
     token time-offset {
-        [ 'Z' | 'z' | <offset=.time-numoffset>]
+        ['Z' | 'z' | <offset=.time-numoffset>]
     }
 
     token time-numoffset {
@@ -46,7 +46,7 @@ role DateTime::Grammarish {
     }
 
     token gmt-or-numeric-tz {
-        'GMT' | 'UTC' | [ <[-+]>? <[0..9]> ** 4 ]
+        'GMT' | 'UTC' | [<[-+]>? <[0..9]> ** 4]
     }
 
     token rfc1123-date {
@@ -77,28 +77,38 @@ role DateTime::Grammarish {
         \w+
     }
 
-    token date1 { # e.g., 02 Jun 1982
+    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> }
+
+    token date1 {
+        # e.g., 02 Jun 1982
         <day=.D2> <.SP> <month> <.SP> <year=.D4-year>
     }
 
-    token date2 { # e.g., 02-Jun-82
+    token date2 {
+        # e.g., 02-Jun-82
         <day=.D2> '-' <month> '-' <year=.D2>
     }
 
-    token date3 { # e.g., Jun  2
+    token date3 {
+        # e.g., Jun  2
         <month> <.SP> <day>
     }
 
-    token date4 { # e.g., 02-Jun-1982
+    token date4 {
+        # e.g., 02-Jun-1982
         <day=.D2> '-' <month> '-' <year=.D4-year>
     }
 
     token date5 {
-        <year=.D4-year>  '-' <month=.D2> '-' <day=.D2>
+        <year=.D4-year> '-' <month=.D2> '-' <day=.D2>
     }
 
     token date6 {
         <day=.D2> '/' <month> '/' <year=.D4-year>
+    }
+
+    token date7 {
+        <day=.D2upto> \h+ <month> \h+ <year=.D4-year>
     }
 
     token time {
@@ -109,16 +119,22 @@ role DateTime::Grammarish {
         <.D1> | <.D2>
     }
 
-    token wkday {
-        'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun'
+    token wkday { :i
+    'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun'
     }
 
-    token weekday {
-        'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
+    token weekday { :i
+    'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
     }
 
-    token month {
-        'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec'
+    token month { <month-name> | <month-short-name> }
+
+    token month-short-name { :i
+    'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec'
+    }
+
+    token month-name { :i
+    'January' | 'February' | 'March' | 'April' | 'May' | 'June' | 'July' | 'August' | 'September' | 'October' | 'November' | 'December'
     }
 
     token D4-year {
@@ -139,5 +155,9 @@ role DateTime::Grammarish {
 
     token D2 {
         \d ** 2
+    }
+
+    token D2upto {
+        \d ** 1..2
     }
 }
