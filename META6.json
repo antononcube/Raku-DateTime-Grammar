@@ -1,26 +1,33 @@
 {
-    "auth": "github:sergot",
-    "authors": [
-        "Filip Sergot"
-    ],
-    "description": "DateTime parser",
-    "build-depends": [
-    ],
-    "depends": [
-    ],
-    "name": "DateTime::Parse",
-    "perl": "6.*",
-    "provides": {
-        "DateTime::Parse": "lib/DateTime/Parse.rakumod"
-    },
-    "raku": "6.*",
-    "source-url": "git://github.com/sergot/datetime-parse.git",
-    "support": {
-        "bugtracker": "https://github.com/sergot/datetime-parse/issues",
-        "source": "git://github.com/sergot/datetime-parse.git"
-    },
-    "test-depends": [
-        "Test"
-    ],
-    "version": "0.9.3"
+  "name": "DateTime::Grammar",
+  "description": "DateTime grammar and actions.",
+  "version": "0.9.4",
+  "perl": "6.*",
+  "authors": [
+    "Anton Antonov",
+    "Filip Sergot"
+  ],
+  "auth": "zef:antononcube",
+  "depends": [],
+  "build-depends": [],
+  "test-depends": [
+    "Test"
+  ],
+  "provides": {
+    "DateTime::Actions::Raku": "lib/DateTime/Actions/Raku.rakumod",
+    "DateTime::Grammar": "lib/DateTime/Grammar.rakumod",
+    "DateTime::Grammarish": "lib/DateTime/Grammarish.rakumod"
+  },
+  "resources": [],
+  "license": "MIT",
+  "tags": [
+    "date",
+    "time",
+    "date-time",
+    "datetime",
+    "grammar",
+    "interpreter"
+  ],
+  "api": "2",
+  "source-url": "git://github.com/antononcube/Raku-DateTime-Grammar.git"
 }

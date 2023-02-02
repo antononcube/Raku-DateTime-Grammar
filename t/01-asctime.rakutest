@@ -2,7 +2,7 @@
 
 use v6.c;
 
-use DateTime::Parse;
+use DateTime::Grammar;
 use Test;
 
 
@@ -17,11 +17,11 @@ subtest "date(1) strings" => {
 	plan @asctimes.elems + 1;
 
 	for @asctimes {
-		lives-ok { DateTime::Parse.new($_); }, "$_ parses";
+		lives-ok { datetime-interpret($_); }, "$_ parses";
 	}
 
 	subtest "Thu Mar  3 23:05:25 2005 parses correctly" => {
-		my $dt = DateTime::Parse.new("Thu Mar  3 23:05:25 2005");
+		my $dt = datetime-interpret("Thu Mar  3 23:05:25 2005");
 
 		plan 7;
 

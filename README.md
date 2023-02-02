@@ -1,24 +1,22 @@
-DateTime::Parse
-===================
+# DateTime::Grammar Raku package
 
 DateTime parser.
 
-[![test](https://github.com/sergot/datetime-parse/actions/workflows/test.yml/badge.svg)](https://github.com/sergot/datetime-parse/actions/workflows/test.yml)
+[![test](https://github.com/antononcube/Raku-DateTime-Grammar/actions/workflows/test.yml/badge.svg)](https://github.com/antononcube/Raku-DateTime-Grammar/actions/workflows/test.yml)
 
 
-Synopsis
-===================
+## Synopsis
 
+```perl6
+my $rfc1123 = DateTime::Parse.new('Sun, 06 Nov 1994 08:49:37 GMT');
+say $rfc1123.Date;
 
-        my $rfc1123 = DateTime::Parse.new('Sun, 06 Nov 1994 08:49:37 GMT');
-        say $rfc1123.Date;
+say DateTime::Parse.new('Sun', :rule<wkday>) + 1; # 7th day of week
+```
 
-        say DateTime::Parse.new('Sun', :rule<wkday>) + 1; # 7th day of week
+-----
 
-
-
-Description
-==================
+## Description
 
 - new( $format, $rule )
     - $format : String with DateTime to be parsed

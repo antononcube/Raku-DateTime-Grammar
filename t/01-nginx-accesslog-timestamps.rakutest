@@ -2,7 +2,7 @@
 
 use v6.c;
 
-use DateTime::Parse;
+use DateTime::Grammar;
 use Test;
 
 my @timestamps = «
@@ -18,11 +18,11 @@ my @timestamps = «
 plan @timestamps.elems + 1;
 
 for @timestamps {
-	lives-ok { DateTime::Parse.new($_); }, "$_ parses";
+	lives-ok { datetime-interpret($_); }, "$_ parses";
 }
 
 subtest "28/Mar/2018:10:21:17 +0000 parses correctly" => {
-	my $dt = DateTime::Parse.new("28/Mar/2018:10:21:17 +0000");
+	my $dt = datetime-interpret("28/Mar/2018:10:21:17 +0000");
 
 	plan 7;
 
