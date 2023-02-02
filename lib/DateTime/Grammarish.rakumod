@@ -6,7 +6,7 @@ role DateTime::Grammarish {
     }
 
     token datetime-spec {
-        <dt=rfc3339-date> | <dt=rfc1123-date> | <dt=rfc850-date> | <dt=rfc850-var-date> | <dt=rfc850-var-date-two> | <dt=asctime-date> | <dt=nginx-date> | <dt=date-spec>
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec>
     }
 
     token rfc3339-date {

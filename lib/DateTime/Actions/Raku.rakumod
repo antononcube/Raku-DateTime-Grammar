@@ -7,7 +7,7 @@ class DateTime::Actions::Raku {
     }
 
     method datetime-spec($/) {
-        make $<dt>.made;
+        make $/.values[0].made;
     }
 
     method rfc3339-date($/) {
