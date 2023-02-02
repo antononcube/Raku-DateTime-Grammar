@@ -21,34 +21,34 @@ is datetime-interpret('08:49:37', :rule<time>).sort,
 is datetime-interpret($rfc1123),
    DateTime.new(:year(1994), :month(11), :day(6), :hour(8), :minute(49), :second(37)),
    'parse string gives correct DateTime object';
-ok datetime-parse($rfc1123)<rfc1123-date>, "'Sun, 06 Nov 1994 08:49:37 GMT' is recognized as rfc1123-date";
-ok datetime-parse($rfc850)<rfc850-date>, "'$rfc850' is recognized as rfc850-date";
-nok datetime-parse($rfc850v)<rfc850-date>, "'$rfc850v' is NOT recognized as rfc850-date";
-nok datetime-parse($rfc850vb)<rfc850-date>, "'$rfc850vb' is NOT recognized as rfc850-date";
-nok datetime-parse($rfc850)<rfc850-var-date>, "'$rfc850' is NOT recognized as rfc850-var-date";
-ok datetime-parse($rfc850v)<rfc850-var-date>, "'$rfc850v' is recognized as rfc850-var-date";
-nok datetime-parse($rfc850vb)<rfc850-var-date>, "'$rfc850vb' is NOT recognized as rfc850-var-date";
-nok datetime-parse($rfc850)<rfc850-var-date-two>, "'$rfc850' is NOT recognized as rfc850-var-date-two";
-nok datetime-parse($rfc850v)<rfc850-var-date-two>, "'$rfc850v' is NOT recognized as rfc850-var-date-two";
-ok datetime-parse($rfc850vb)<rfc850-var-date-two>, "'$rfc850vb' is recognized as rfc850-var-date-two";
-ok datetime-parse($rfc3339_1)<rfc3339-date>, "'$rfc3339_1' is recognized as rfc3339-date";
-ok datetime-parse($rfc3339_2)<rfc3339-date>, "'$rfc3339_2' is recognized as rfc3339-date";
+ok datetime-parse($rfc1123, rule=>'datetime-spec')<rfc1123-date>, "'Sun, 06 Nov 1994 08:49:37 GMT' is recognized as rfc1123-date";
+ok datetime-parse($rfc850, rule=>'datetime-spec')<rfc850-date>, "'$rfc850' is recognized as rfc850-date";
+nok datetime-parse($rfc850v, rule=>'datetime-spec')<rfc850-date>, "'$rfc850v' is NOT recognized as rfc850-date";
+nok datetime-parse($rfc850vb, rule=>'datetime-spec')<rfc850-date>, "'$rfc850vb' is NOT recognized as rfc850-date";
+nok datetime-parse($rfc850, rule=>'datetime-spec')<rfc850-var-date>, "'$rfc850' is NOT recognized as rfc850-var-date";
+ok datetime-parse($rfc850v, rule=>'datetime-spec')<rfc850-var-date>, "'$rfc850v' is recognized as rfc850-var-date";
+nok datetime-parse($rfc850vb, rule=>'datetime-spec')<rfc850-var-date>, "'$rfc850vb' is NOT recognized as rfc850-var-date";
+nok datetime-parse($rfc850, rule=>'datetime-spec')<rfc850-var-date-two>, "'$rfc850' is NOT recognized as rfc850-var-date-two";
+nok datetime-parse($rfc850v, rule=>'datetime-spec')<rfc850-var-date-two>, "'$rfc850v' is NOT recognized as rfc850-var-date-two";
+ok datetime-parse($rfc850vb, rule=>'datetime-spec')<rfc850-var-date-two>, "'$rfc850vb' is recognized as rfc850-var-date-two";
+ok datetime-parse($rfc3339_1, rule=>'datetime-spec')<rfc3339-date>, "'$rfc3339_1' is recognized as rfc3339-date";
+ok datetime-parse($rfc3339_2, rule=>'datetime-spec')<rfc3339-date>, "'$rfc3339_2' is recognized as rfc3339-date";
 
 # RFC 3339 additional tests
 subtest {
-    ok datetime-parse("1994-11-06 08:49:37Z")<rfc3339-date>;
-    ok datetime-parse("1994-11-06T08:49:37Z")<rfc3339-date>;
-    ok datetime-parse("1994-11-06t08:49:37Z")<rfc3339-date>;
-    ok datetime-parse("1994-11-06 08:49:37z")<rfc3339-date>;
-    ok datetime-parse("1994-11-06T08:49:37z")<rfc3339-date>;
-    ok datetime-parse("1994-11-06t08:49:37z")<rfc3339-date>;
+    ok datetime-parse("1994-11-06 08:49:37Z", rule=>'datetime-spec')<rfc3339-date>;
+    ok datetime-parse("1994-11-06T08:49:37Z", rule=>'datetime-spec')<rfc3339-date>;
+    ok datetime-parse("1994-11-06t08:49:37Z", rule=>'datetime-spec')<rfc3339-date>;
+    ok datetime-parse("1994-11-06 08:49:37z", rule=>'datetime-spec')<rfc3339-date>;
+    ok datetime-parse("1994-11-06T08:49:37z", rule=>'datetime-spec')<rfc3339-date>;
+    ok datetime-parse("1994-11-06t08:49:37z", rule=>'datetime-spec')<rfc3339-date>;
 }, 'RFC 3339 formatted time is case-insensitive';
 
 # -0000 for UTC
-ok datetime-parse('Wed, 26 Feb 2020 21:38:40 -0000')<rfc1123-date>, 'numeric gmt value';
+ok datetime-parse('Wed, 26 Feb 2020 21:38:40 -0000', rule=>'datetime-spec')<rfc1123-date>, 'numeric gmt value';
 # Numeric timezone values
-ok datetime-parse('Mon, 22 Aug 2016 13:15:39 +0200')<rfc1123-date>, 'numeric gmt value';
-ok datetime-parse('Mon, 22 Aug 2016 13:15:39 -0500')<rfc1123-date>, 'numeric gmt value';
+ok datetime-parse('Mon, 22 Aug 2016 13:15:39 +0200', rule=>'datetime-spec')<rfc1123-date>, 'numeric gmt value';
+ok datetime-parse('Mon, 22 Aug 2016 13:15:39 -0500', rule=>'datetime-spec')<rfc1123-date>, 'numeric gmt value';
 is datetime-interpret('Mon, 22 Aug 2016 13:15:39 +0200').timezone, 7200, 'got timezone';
 is datetime-interpret('Mon, 22 Aug 2016 13:15:39 -0200').timezone, -7200, 'got timezone';
 is datetime-interpret('Mon, 22 Aug 2016 13:15:39 +0000').timezone, 0, 'got timezone';
