@@ -45,11 +45,11 @@ subtest "locale datetime string with timezone" => {
 	plan @asctimes.elems + 2;
 
 	for @asctimes {
-		lives-ok { DateTime::Parse.new($_); }, "$_ parses";
+		lives-ok { datetime-interpret($_); }, "$_ parses";
 	}
 
 	subtest "Fri Mar 23 13:20:46 2018 UTC parses correctly" => {
-		my $dt = DateTime::Parse.new("Fri Mar 23 13:20:46 2018 UTC");
+		my $dt = datetime-interpret("Fri Mar 23 13:20:46 2018 UTC");
 
 		plan 7;
 
@@ -64,7 +64,7 @@ subtest "locale datetime string with timezone" => {
 	}
 
 	subtest "Fri Mar 23 13:20:46 2018 UTC+3 parses correctly" => {
-		my $dt = DateTime::Parse.new("Fri Mar 23 13:20:46 2018 UTC+3");
+		my $dt = datetime-interpret("Fri Mar 23 13:20:46 2018 UTC+3");
 
 		plan 10;
 
