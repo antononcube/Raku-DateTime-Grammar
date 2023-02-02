@@ -1,0 +1,28 @@
+#!/usr/bin/env raku
+use v6.d;
+
+use DateTime::Grammar;
+
+my %*SUB-MAIN-OPTS = :named-anywhere;
+
+#| Interpret datetime spec.
+multi sub MAIN(Str $spec, #= Datetime specification.
+               Str :t(:$target) = 'Raku' #= Interpretation target.
+               ) {
+    my $res = datetime-interpretation($spec, :$target);
+    say $res;
+}
+
+#| Interpret datetime spec obtained by a sequence of strings.
+multi sub MAIN(*@words, #= Datetime specification.
+               Str :t(:$target) = 'Raku' #= Interpretation target.
+               ) {
+    return MAIN(@words.join(' '), :$target);
+}
+
+#| Interpret datetime spec from pipeline input
+multi sub MAIN(Str :t(:$target) = 'Raku' #= Interpretation target.
+               ) {
+    my $words = lines.join(' ');
+    return MAIN($words, :$target);
+}
