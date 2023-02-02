@@ -33,26 +33,17 @@ use DateTime::Grammar;
 my $rfc1123 = datetime-interpret('Sun, 06 Nov 1994 08:49:37 GMT');
 $rfc1123.raku
 ```
-```
-# DateTime.new(1994,11,6,8,49,37)
-```
 
 Just the date:
 
 ```perl6
 $rfc1123.Date;
 ```
-```
-# 1994-11-06
-```
 
 7th day of week:
 
 ```perl6
 datetime-interpret('Sun', :rule<wkday>) + 1;
-```
-```
-# 7
 ```
 
 ------
@@ -67,22 +58,6 @@ my grammar DateTimeInterval
 };
 
 DateTimeInterval.parse('from 2022-12-02 to Oct 4 2023')
-```
-```
-# ｢from 2022-12-02 to Oct 4 2023｣
-#  from => ｢2022-12-02｣
-#   date-spec => ｢2022-12-02｣
-#    date5 => ｢2022-12-02｣
-#     year => ｢2022｣
-#     month => ｢12｣
-#     day => ｢02｣
-#  to => ｢Oct 4 2023｣
-#   date-spec => ｢Oct 4 2023｣
-#    date8 => ｢Oct 4 2023｣
-#     month => ｢Oct｣
-#      month-short-name => ｢Oct｣
-#     day => ｢4｣
-#     year => ｢2023｣
 ```
 
 ------
