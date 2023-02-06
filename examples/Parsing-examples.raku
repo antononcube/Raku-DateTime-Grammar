@@ -8,7 +8,7 @@ use DateTime::Grammar;
 
 #----------------------------------------------------------
 
-#`[
+
 say "=" x 120;
 
 my @commands = [
@@ -21,7 +21,8 @@ my @commands = [
     '1996-12-19T16:39:57-08:00',
     '2022-01-22',
     '4 Oct 2022',
-    'October 12 2022'
+    'October 12 2022',
+    '4/23/2022'
 ];
 
 
@@ -29,11 +30,11 @@ for @commands -> $cmd {
     say '=' x 60;
     say $cmd;
     say '-' x 60;
-    say datetime-parse($cmd, rule => 'TOP');
+    say datetime-parse($cmd, rule => 'TOP'):extended;
     say '-' x 60;
     say datetime-interpret($cmd).raku;
 }
-]
+
 
 say '=' x 120;
 
