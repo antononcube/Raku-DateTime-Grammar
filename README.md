@@ -55,6 +55,23 @@ datetime-interpret('Sun', :rule<wkday>) + 1;
 # 7
 ```
 
+With the adverb `extended` we can control whether the datetime specs can be just dates. 
+Here are examples:
+
+```perl6
+datetime-interpret('1/23/1089'):extended;
+```
+```
+# 1089-01-23T00:00:00Z
+```
+
+```perl6
+datetime-interpret('1/23/1089'):!extended;
+```
+```
+# (Any)
+```
+
 ------
 
 ## Using the role in "external" grammars
@@ -69,32 +86,27 @@ my grammar DateTimeInterval
 DateTimeInterval.parse('from 2022-12-02 to Oct 4 2023')
 ```
 ```
-# ｢from 2022-12-02 to Oct 4 2023｣
-#  from => ｢2022-12-02｣
-#   date-spec => ｢2022-12-02｣
-#    date5 => ｢2022-12-02｣
-#     year => ｢2022｣
-#     month => ｢12｣
-#     day => ｢02｣
-#  to => ｢Oct 4 2023｣
-#   date-spec => ｢Oct 4 2023｣
-#    date8 => ｢Oct 4 2023｣
-#     month => ｢Oct｣
-#      month-short-name => ｢Oct｣
-#     day => ｢4｣
-#     year => ｢2023｣
+# (Any)
 ```
 
 ------
 
 ## CLI
 
-***TBD...***
-
 The package provides a Command Line Interface (CLI) script. Here is its usage message:
 
+```shell
+datetime-interpretation --help
 ```
-datetime-interpret
+```
+# Usage:
+#   datetime-interpretation <spec> [-t|--target=<Str>] -- Interpret datetime spec.
+#   datetime-interpretation [<words> ...] [-t|--target=<Str>] -- Interpret datetime spec obtained by a sequence of strings.
+#   datetime-interpretation [-t|--target=<Str>] -- Interpret datetime spec from pipeline input
+#   
+#     <spec>               Datetime specification.
+#     -t|--target=<Str>    Interpretation target. [default: 'Raku']
+#     [<words> ...]        Datetime specification.
 ```
 
 

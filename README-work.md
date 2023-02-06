@@ -46,6 +46,17 @@ $rfc1123.Date;
 datetime-interpret('Sun', :rule<wkday>) + 1;
 ```
 
+With the adverb `extended` we can control whether the datetime specs can be just dates. 
+Here are examples:
+
+```perl6
+datetime-interpret('1/23/1089'):extended;
+```
+
+```perl6
+datetime-interpret('1/23/1089'):!extended;
+```
+
 ------
 
 ## Using the role in "external" grammars
@@ -64,12 +75,10 @@ DateTimeInterval.parse('from 2022-12-02 to Oct 4 2023')
 
 ## CLI
 
-***TBD...***
-
 The package provides a Command Line Interface (CLI) script. Here is its usage message:
 
-```
-datetime-interpret
+```shell
+datetime-interpretation --help
 ```
 
 
