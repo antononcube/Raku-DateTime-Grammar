@@ -2,7 +2,8 @@
 
 ## Introduction
 
-This Raku package provides grammar (role) and interpreters for parsing datetime specifications. 
+This Raku package provides grammar (role) and interpreters for parsing 
+[datetime specifications](https://docs.raku.org/type/DateTime). 
 
 Most of the code is from [FS1]. The original code of the file 
 ["Parse.rakumod"](https://github.com/sergot/datetime-parse/blob/master/lib/DateTime/Parse.rakumod)
@@ -21,6 +22,21 @@ provides the "top-level" functions:
 **Remark:** The code `DateTime::Parse.new` can be replaced with `datetime-interpret`.
 Compare the test files of this repository that have names starting with "01-" with the corresponding files in [FS1].
 
+------
+
+## Installation
+
+From [Zef ecosystem]():
+
+```
+zef install DateTime::Grammar
+```
+
+From GitHub:
+
+```
+zef install https://github.com/antononcube/Raku-DateTime-Grammar.git
+```
 
 ------
 
