@@ -86,7 +86,11 @@ class DateTime::Actions::Raku {
         self!genericDate($/);
     }
 
-    method date8($/) { # e.g. March 23 2018s
+    method date8($/) { # e.g. March 23 2018
+        self!genericDate($/);
+    }
+
+    method date9($/) { # e.g. 2/23/2018
         self!genericDate($/);
     }
 

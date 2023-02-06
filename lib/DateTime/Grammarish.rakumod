@@ -1,12 +1,12 @@
 use v6.d;
 
 role DateTime::Grammarish {
-    token TOP {
+    token TOP($*extended) {
         <datetime-spec>
     }
 
     token datetime-spec {
-        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec>
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec> <?{$*extended}>
     }
 
     token rfc3339-date {
@@ -81,7 +81,7 @@ role DateTime::Grammarish {
         \w+
     }
 
-    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> | <date8> }
+    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> | <date8> | <date9> }
 
     token date1 {
         # e.g., 02 Jun 1982
@@ -117,6 +117,10 @@ role DateTime::Grammarish {
 
     token date8 {
         <month> \h+ <day=.D2upto> \h+ <year=.D4-year>
+    }
+
+    token date9 {
+        <month=.D2upto> '/' <day=.D2upto> '/' <year=.D4-year>
     }
 
     token time {

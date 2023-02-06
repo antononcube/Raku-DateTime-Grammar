@@ -13,12 +13,18 @@ my $pCOMMAND = DateTime::Grammar;
 
 my $actionsObj = DateTime::Actions::Raku.new();
 
-sub datetime-parse(Str:D $spec, Str:D :$rule = 'TOP') is export {
-    return $pCOMMAND.parse($spec, :$rule);
+sub datetime-parse(Str:D $spec,
+                   Str:D :$rule = 'TOP',
+                   Bool :$extended = True
+                   ) is export {
+    return $pCOMMAND.parse($spec, :$rule, args => $rule eq 'TOP' ?? ($extended,) !! Empty);
 }
 
-sub datetime-subparse(Str:D $spec, Str:D :$rule = 'TOP') is export {
-    return $pCOMMAND.subparse($spec, :$rule);
+sub datetime-subparse(Str:D $spec,
+                      Str:D :$rule = 'TOP',
+                      Bool :$extended = True
+                      ) is export {
+    return $pCOMMAND.subparse($spec, :$rule, args => $rule eq 'TOP' ?? ($extended,) !! Empty);
 }
 
 #| Conversion of datetime specification into code. (For example, a Raku DateTime object.)
@@ -29,7 +35,9 @@ proto datetime-interpret(|) is export {*}
 
 multi sub datetime-interpret(Str:D $spec,
                              Str:D :$rule = 'TOP',
-                             :target(:$actions) is copy = $actionsObj) is export {
+                             :target(:$actions) is copy = $actionsObj,
+                             Bool :$extended = True
+                             ) is export {
     if $actions.isa(Whatever) || $actions ~~ Str && $actions.lc eq 'raku' { $actions = $actionsObj; }
-    return $pCOMMAND.parse($spec, :$rule, :$actions).made;
+    return $pCOMMAND.parse($spec, :$rule, :$actions, args => $rule eq 'TOP' ?? ($extended,) !! Empty).made;
 }
