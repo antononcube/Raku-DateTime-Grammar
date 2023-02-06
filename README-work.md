@@ -77,14 +77,28 @@ datetime-interpret('1/23/1089'):!extended;
 
 ## Using the role in "external" grammars
 
+Here is how the role "Grammarish" of "DateTime::Grammar" can be used in "higher order" grammars:
+
 ```perl6
 my grammar DateTimeInterval 
+    does DateTime::Grammarish {
+
+    rule TOP($*extended) { 'from' <from=.datetime-param-spec> 'to' <to=.datetime-param-spec> } 
+};
+
+DateTimeInterval.parse('from 2022-12-02 to Oct 4 2023', args => (True,))
+```
+
+The parameter `$*extended` can be eliminated by using `<datetime-spec>` instead of `<datetime-param-spec>`:
+
+```perl6
+my grammar DateTimeInterval2 
     does DateTime::Grammarish {
 
     rule TOP { 'from' <from=.datetime-spec> 'to' <to=.datetime-spec> } 
 };
 
-DateTimeInterval.parse('from 2022-12-02 to Oct 4 2023')
+DateTimeInterval2.parse('from 2022-12-02 to Oct 4 2023')
 ```
 
 ------
