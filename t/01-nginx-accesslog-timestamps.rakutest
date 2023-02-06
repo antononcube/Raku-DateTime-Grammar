@@ -1,6 +1,7 @@
-#! /usr/bin/env perl6
-
 use v6.d;
+
+use lib '.';
+use lib './lib';
 
 use DateTime::Grammar;
 use Test;

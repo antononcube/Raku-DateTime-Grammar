@@ -1,4 +1,8 @@
 use v6.d;
+
+use lib '.';
+use lib './lib';
+
 use Test;
 use DateTime::Grammar;
 use DateTime::Actions::Raku;
@@ -11,9 +15,12 @@ is datetime-interpret('12 October 2022'), DateTime.new(2022,10,12,0,0,0), '12 Oc
 is datetime-interpret('3 Nov 2022'), DateTime.new(2022,11,3,0,0,0), '3 Nov 2022';
 is datetime-interpret('3 april 2002'), DateTime.new(2002,4,3,0,0,0), '3 april 2002';
 is datetime-interpret('apr 22 2011'), DateTime.new(2011,4,22,0,0,0), 'apr 22 2011';
+is datetime-interpret('8/24/2010'), DateTime.new(2010,8,24,0,0,0), '8/24/2010';
 is datetime-interpret('2011-08-02'), DateTime.new(2011,8,2,0,0,0), '2011-08-02';
 is datetime-interpret('2010-08-12'), DateTime.new(2010,8,12,0,0,0), '2010-08-12';
+is datetime-interpret('2010-08-12'):extended, DateTime.new(2010,8,12,0,0,0), '2010-08-12 with extended adverb';
 
+nok datetime-interpret('2010-08-12'):!extended, '2010-08-12 with !extended adverb';
 nok datetime-parse('1013-4-2'), '1013-4-2';
 
 done-testing;

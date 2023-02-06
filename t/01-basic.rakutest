@@ -1,4 +1,8 @@
 use v6.d;
+
+use lib '.';
+use lib './lib';
+
 use Test;
 use DateTime::Grammar;
 use DateTime::Actions::Raku;
