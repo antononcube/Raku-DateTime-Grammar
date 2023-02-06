@@ -6,6 +6,10 @@ class DateTime::Actions::Raku {
         make $/.values[0].made;
     }
 
+    method datetime-param-spec($/) {
+        make $/.values[0].made;
+    }
+
     method datetime-spec($/) {
         make $/.values[0].made;
     }

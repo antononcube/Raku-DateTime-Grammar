@@ -2,11 +2,15 @@ use v6.d;
 
 role DateTime::Grammarish {
     token TOP($*extended) {
-        <datetime-spec>
+        <datetime-param-spec>
+    }
+
+    token datetime-param-spec {
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec> <?{$*extended}>
     }
 
     token datetime-spec {
-        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec> <?{$*extended}>
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec>
     }
 
     token rfc3339-date {
