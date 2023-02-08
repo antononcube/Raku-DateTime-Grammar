@@ -61,7 +61,7 @@ tasks:
           cd source/
           zef install --/test File::Temp
           zef install --/test --deps-only .
-          time -o "${cache_root_dir}/${version}_time" \
+          /usr/bin/time -o "${cache_root_dir}/${version}_time" \
           zef test . && touch "${cache_root_dir}/${version}_ok"
     depends:
       -
