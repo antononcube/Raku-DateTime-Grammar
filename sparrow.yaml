@@ -76,4 +76,4 @@ tasks:
       sudo chmod a+x /usr/local/bin/rakubrew
       rakubrew mode shim
       zef install --/test Text::Table::Simple
-      sudo apk add time
+      sudo apk add time  --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
