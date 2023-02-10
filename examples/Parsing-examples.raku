@@ -22,7 +22,10 @@ my @commands = [
     '2022-01-22',
     '4 Oct 2022',
     'October 12 2022',
-    '4/23/2022'
+    '4/23/2022',
+    'today',
+    'yesterday',
+    'tomorrow'
 ];
 
 

@@ -195,4 +195,12 @@ class DateTime::Actions::Raku {
     method D2upto($/) {
         make +$/;
     }
+
+    method day-spec($/) {
+        make do given $/.Str.trim {
+            when 'today' { Date.today.DateTime }
+            when 'yesterday' { (Date.today - 1).DateTime }
+            when 'tomorrow' { (Date.today + 1).DateTime }
+        }
+    }
 }

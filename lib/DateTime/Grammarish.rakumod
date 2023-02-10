@@ -6,11 +6,11 @@ role DateTime::Grammarish {
     }
 
     token datetime-param-spec {
-        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec> <?{$*extended}>
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | [ <day-spec> | <date-spec> ] <?{$*extended}>
     }
 
     token datetime-spec {
-        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <date-spec>
+        <rfc3339-date> | <rfc1123-date> | <rfc850-date> | <rfc850-var-date> | <rfc850-var-date-two> | <asctime-date> | <nginx-date> | <day-spec> | <date-spec>
     }
 
     token rfc3339-date {
@@ -176,4 +176,6 @@ role DateTime::Grammarish {
     token D2upto {
         \d ** 1..2
     }
+
+    token day-spec { :i 'yesterday' | 'today' | 'tomorrow' }
 }
