@@ -23,6 +23,7 @@ is datetime-interpret('2010-08-12'):extended, DateTime.new(2010,8,12,0,0,0), '20
 nok datetime-interpret('2010-08-12'):!extended, '2010-08-12 with !extended adverb';
 nok datetime-parse('1013-4-2'), '1013-4-2';
 
+# Note that in Actions::Raku the methods .earlier and .later are used.
 is datetime-interpret('yesterday'):extended, (Date.today - 1).DateTime, 'yesterday';
 is datetime-interpret('today'):extended, Date.today.DateTime, 'today';
 is datetime-interpret('tomorrow'):extended, (Date.today + 1).DateTime, 'tomorrow';
