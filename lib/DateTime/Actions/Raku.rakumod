@@ -199,8 +199,8 @@ class DateTime::Actions::Raku {
     method day-spec($/) {
         make do given $/.Str.trim {
             when 'today' { Date.today.DateTime }
-            when 'yesterday' { (Date.today - 1).DateTime }
-            when 'tomorrow' { (Date.today + 1).DateTime }
+            when 'yesterday' { Date.today.earlier( :1day).DateTime }
+            when 'tomorrow' { Date.today.later(:1day).DateTime }
         }
     }
 }
