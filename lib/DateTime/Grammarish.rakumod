@@ -115,12 +115,12 @@ role DateTime::Grammarish {
         <day=.D2> '/' <month> '/' <year=.D4-year>
     }
 
-    token date7 {
+    token date7 { # e.g. 28 March 2018
         <day=.D2upto> \h+ <month> \h+ <year=.D4-year>
     }
 
-    token date8 {
-        <month> \h+ <day=.D2upto> \h+ <year=.D4-year>
+    token date8 { # e.g. March 23 2018 or March 23, 2018
+        <month> \h+ <day=.D2upto> [ \h+ | \h* ',' \h* ] <year=.D4-year>
     }
 
     token date9 {
