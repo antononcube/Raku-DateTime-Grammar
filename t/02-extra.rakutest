@@ -17,9 +17,13 @@ is datetime-interpret('3 april 2002'), DateTime.new(2002,4,3,0,0,0), '3 april 20
 is datetime-interpret('apr 22 2011'), DateTime.new(2011,4,22,0,0,0), 'apr 22 2011';
 is datetime-interpret('April 22, 1904'), DateTime.new(1904,4,22,0,0,0), 'April 22, 1904';
 is datetime-interpret('8/24/2010'), DateTime.new(2010,8,24,0,0,0), '8/24/2010';
+is datetime-interpret('3-06-2016'), DateTime.new(2016,6,3,0,0,0), '03-06-2016';
+is datetime-interpret('3.6.2016'), DateTime.new(2016,6,3,0,0,0), '03.06.2016';
 is datetime-interpret('2011-08-02'), DateTime.new(2011,8,2,0,0,0), '2011-08-02';
 is datetime-interpret('2010-08-12'), DateTime.new(2010,8,12,0,0,0), '2010-08-12';
 is datetime-interpret('2010-08-12'):extended, DateTime.new(2010,8,12,0,0,0), '2010-08-12 with extended adverb';
+is datetime-interpret('July 2020'), DateTime.new(2020,7,1,0,0,0), 'July 2020';
+is datetime-interpret('July 2020'):extended, DateTime.new(2020,7,1,0,0,0), 'July 2020 with extended adverb';
 
 nok datetime-interpret('2010-08-12'):!extended, '2010-08-12 with !extended adverb';
 nok datetime-parse('1013-4-2'), '1013-4-2';
