@@ -85,7 +85,7 @@ role DateTime::Grammarish {
         \w+
     }
 
-    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> | <date8> | <date9> }
+    token date-spec { <date1> | <date2> | <date3> | <date4> | <date5> | <date6> | <date7> | <date8> | <date9> | <date10> }
 
     token date1 {
         # e.g., 02 Jun 1982
@@ -112,7 +112,8 @@ role DateTime::Grammarish {
     }
 
     token date6 {
-        <day=.D2> '/' <month> '/' <year=.D4-year>
+        || <day=.D2> '/' <month> '/' <year=.D4-year>
+        || <day=.D2upto> $<d>=['.' | '-'] <month=.D2upto> $<d> <year=.D4-year>
     }
 
     token date7 { # e.g. 28 March 2018
@@ -125,6 +126,11 @@ role DateTime::Grammarish {
 
     token date9 {
         <month=.D2upto> '/' <day=.D2upto> '/' <year=.D4-year>
+    }
+
+    token date10 {
+        # e.g July 2020 or Aug,2020
+        <month> [ \h+ | \h* ',' \h* ] <year=.D4-year>
     }
 
     token time {
