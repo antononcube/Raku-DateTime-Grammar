@@ -54,7 +54,7 @@ class DateTime::Actions::Raku {
     }
 
     method !genericDate($/) {
-        make { year => $<year>.made, month => $<month>.made, day => $<day>.made };
+        make { year => $<year>.made, month => $<month>.made, day => $<day>.made // 1 };
     }
 
     method date-spec($/) {
@@ -95,6 +95,10 @@ class DateTime::Actions::Raku {
     }
 
     method date9($/) { # e.g. 2/23/2018
+        self!genericDate($/);
+    }
+
+    method date10($/) { # e.g. July, 2020
         self!genericDate($/);
     }
 
